@@ -6,7 +6,7 @@
 /*   By: haouky <haouky@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/13 15:34:12 by haouky            #+#    #+#             */
-/*   Updated: 2024/01/17 11:37:49 by haouky           ###   ########.fr       */
+/*   Updated: 2024/01/17 13:06:16 by haouky           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ char	*get(int fd, t_var *v, char *tmp, char *s)
 	t_list	*head;
 
 	head = 0;
-	v->i = 0;
 	if (chek(tmp) < 0)
 	{
 		while ((chek(s) < 0))
@@ -71,15 +70,23 @@ char	*get(int fd, t_var *v, char *tmp, char *s)
 			if (v->i <= 0)
 				break ;
 			s[v->i] = 0;
-			add_backlst(&head, s);
+			(add_backlst(&head, s));
 		}
 		free(s);
 		tmp = ft_strjoin(tmp, splt(head, fd));
 		ft_lstclear(&head);
 	}
 	v->i = chek(tmp);
-	v->line = sub(tmp, 0, v->i + 1);
-	v->save = sub(tmp, v->i + 1, ft_strlen(tmp));
+	if (v->i < 0)
+	{
+		v->line = sub(tmp, 0, ft_strlen(tmp));
+		v->save = 0;
+	}
+	else
+	{
+		v->line = sub(tmp, 0, v->i + 1);
+		v->save = sub(tmp, v->i + 1, ft_strlen(tmp));
+	}
 	free(tmp);
 	return (v->line);
 }
@@ -90,10 +97,15 @@ char	*get_next_line(int fd)
 	char		*s;
 	static char	*tmp;
 
+	s = 0;
+	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, s, 0) < 0)
+	{
+		free(tmp);
+		tmp = 0;
+		return (0);
+	}
 	s = malloc(BUFFER_SIZE + 1);
 	if (!s)
-		return (0);
-	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, s, 0) < 0)
 		return (0);
 	s[0] = 0;
 	v.line = get(fd, &v, tmp, s);

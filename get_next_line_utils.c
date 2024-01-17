@@ -6,13 +6,13 @@
 /*   By: haouky <haouky@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/13 15:41:25 by haouky            #+#    #+#             */
-/*   Updated: 2024/01/17 10:41:50 by haouky           ###   ########.fr       */
+/*   Updated: 2024/01/17 13:03:59 by haouky           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-void	add_backlst(t_list **lst, char *s)
+int	add_backlst(t_list **lst, char *s)
 {
 	t_list	*head;
 	t_list	*ne;
@@ -22,10 +22,10 @@ void	add_backlst(t_list **lst, char *s)
 	head = *lst;
 	ne = malloc(sizeof(t_list));
 	if (ne == 0)
-		return ;
+		return (0);
 	ne->content = malloc(ft_strlen(s) + 1);
 	if (ne->content == 0)
-		return ;
+		return	(0);
 	while (s[++i])
 		(ne->content)[i] = s[i];
 	(ne->content)[i] = 0;
@@ -38,6 +38,7 @@ void	add_backlst(t_list **lst, char *s)
 			head = head->next;
 		head->next = ne;
 	}
+	return (1);
 }
 
 size_t	ft_strlen(const char *str)
@@ -61,6 +62,8 @@ char	*sub(char const *s, unsigned int st, size_t l)
 
 	i = 0;
 	if (s == 0)
+		return (0);
+	if (!s[0])
 		return (0);
 	while (s[st + i] != 0 && i < l)
 		i++;
@@ -123,21 +126,3 @@ void	ft_lstclear(t_list **lst)
 	}
 	*lst = 0;
 }
-
-// char	*ft_strdup(const char *s1)
-// {
-// 	char	*s;
-// 	int		i;
-
-// 	i = ft_strlen(s1);
-// 	s = malloc(i + 1);
-// 	if (s == 0)
-// 		return (0);
-// 	s[i] = 0;
-// 	while (i > 0)
-// 	{
-// 		i--;
-// 		s[i] = s1[i];
-// 	}
-// 	return (s);
-// }
