@@ -6,13 +6,13 @@
 /*   By: haouky <haouky@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/13 15:41:25 by haouky            #+#    #+#             */
-/*   Updated: 2024/01/17 13:03:59 by haouky           ###   ########.fr       */
+/*   Updated: 2024/01/18 18:12:26 by haouky           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-int	add_backlst(t_list **lst, char *s)
+void	add_backlst(t_list **lst, char *s)
 {
 	t_list	*head;
 	t_list	*ne;
@@ -22,10 +22,10 @@ int	add_backlst(t_list **lst, char *s)
 	head = *lst;
 	ne = malloc(sizeof(t_list));
 	if (ne == 0)
-		return (0);
+		return (ft_lstclear(lst));
 	ne->content = malloc(ft_strlen(s) + 1);
 	if (ne->content == 0)
-		return	(0);
+		return (ft_lstclear(lst));
 	while (s[++i])
 		(ne->content)[i] = s[i];
 	(ne->content)[i] = 0;
@@ -38,7 +38,6 @@ int	add_backlst(t_list **lst, char *s)
 			head = head->next;
 		head->next = ne;
 	}
-	return (1);
 }
 
 size_t	ft_strlen(const char *str)

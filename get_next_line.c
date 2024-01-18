@@ -6,7 +6,7 @@
 /*   By: haouky <haouky@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/13 15:34:12 by haouky            #+#    #+#             */
-/*   Updated: 2024/01/17 13:06:16 by haouky           ###   ########.fr       */
+/*   Updated: 2024/01/18 18:08:52 by haouky           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,16 +72,12 @@ char	*get(int fd, t_var *v, char *tmp, char *s)
 			s[v->i] = 0;
 			(add_backlst(&head, s));
 		}
-		free(s);
 		tmp = ft_strjoin(tmp, splt(head, fd));
 		ft_lstclear(&head);
 	}
 	v->i = chek(tmp);
 	if (v->i < 0)
-	{
 		v->line = sub(tmp, 0, ft_strlen(tmp));
-		v->save = 0;
-	}
 	else
 	{
 		v->line = sub(tmp, 0, v->i + 1);
@@ -108,7 +104,9 @@ char	*get_next_line(int fd)
 	if (!s)
 		return (0);
 	s[0] = 0;
+	v.save = 0;
 	v.line = get(fd, &v, tmp, s);
+	free(s);
 	tmp = v.save;
 	if (!v.save)
 		free(v.save);

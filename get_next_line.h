@@ -6,7 +6,7 @@
 /*   By: haouky <haouky@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/13 15:35:49 by haouky            #+#    #+#             */
-/*   Updated: 2024/01/17 13:04:32 by haouky           ###   ########.fr       */
+/*   Updated: 2024/01/18 17:50:18 by haouky           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,9 @@ typedef struct s_list
 	struct s_list	*next;
 }					t_list;
 
-void				ft_lstclear(t_list **ls);
+void				ft_lstclear(t_list **lst);
 char				*ft_strjoin(char *s1, char *s2);
-int					add_backlst(t_list **lst, char *s);
+void				add_backlst(t_list **lst, char *s);
 char				*sub(char const *s, unsigned int st, size_t l);
 char				*get_next_line(int fd);
 size_t				ft_strlen(const char *str);
