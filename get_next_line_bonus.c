@@ -6,7 +6,7 @@
 /*   By: haouky <haouky@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 18:44:58 by haouky            #+#    #+#             */
-/*   Updated: 2024/01/20 10:38:32 by haouky           ###   ########.fr       */
+/*   Updated: 2024/01/20 11:42:27 by haouky           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,9 +75,7 @@ char	*get(int fd, t_var *v, char *tmp, char *s)
 	if (chek(tmp) < 0)
 	{
 		while ((chek(s) < 0) && ft_read(fd, s, BUFFER_SIZE) > 0)
-			(add_backlst(&head, s));
-		tmp = ft_strjoin(tmp, splt(head, fd));
-		ft_lstclear(&head);
+			tmp = ft_strjoin(tmp, s);
 	}
 	v->i = chek(tmp);
 	if (v->i < 0)

@@ -6,7 +6,7 @@
 /*   By: haouky <haouky@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 18:46:15 by haouky            #+#    #+#             */
-/*   Updated: 2024/01/19 18:49:28 by haouky           ###   ########.fr       */
+/*   Updated: 2024/01/20 11:38:10 by haouky           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,25 +86,20 @@ char	*ft_strjoin(char *s1, char *s2)
 	int		i;
 
 	i = 0;
-	if (!s2)
-		return (s1);
-	if (!s1)
-		return (s2);
 	l = (ft_strlen(s1) + ft_strlen(s2) + 1);
 	s = malloc(l);
 	if (!s)
 		return (0);
-	while (s1[i])
+	while (s1 && s1[i])
 	{
 		s[i] = s1[i];
 		i++;
 	}
 	l = 0;
-	while (s2[l])
+	while (s2 && s2[l])
 		s[i++] = s2[l++];
 	s[i] = 0;
 	free(s1);
-	free(s2);
 	return (s);
 }
 
