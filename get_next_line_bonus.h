@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.h                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: haouky <haouky@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/13 15:35:49 by haouky            #+#    #+#             */
-/*   Updated: 2024/01/20 10:37:35 by haouky           ###   ########.fr       */
+/*   Created: 2024/01/19 18:42:42 by haouky            #+#    #+#             */
+/*   Updated: 2024/01/20 10:43:20 by haouky           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#ifndef GET_NEXT_LINE_BONUS_H
+# define GET_NEXT_LINE_BONUS_H
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 1
 # endif
@@ -24,7 +24,6 @@
 typedef struct lists
 {
 	int				i;
-	int				a;
 	char			*line;
 	char			*save;
 }					t_var;
@@ -41,7 +40,7 @@ char				*sub(char const *s, unsigned int st, size_t l);
 char				*get_next_line(int fd);
 size_t				ft_strlen(const char *str);
 int					chek(char *s);
-int					ft_read(int fd, char *s, int i);
+int					t_read(int fd, char *s, int i);
 char				*splt(t_list *lst, int i);
 char				*get(int fd, t_var *v, char *tmp, char *s);
 

@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: haouky <haouky@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/13 15:41:25 by haouky            #+#    #+#             */
-/*   Updated: 2024/01/20 10:59:03 by haouky           ###   ########.fr       */
+/*   Created: 2024/01/19 18:46:15 by haouky            #+#    #+#             */
+/*   Updated: 2024/01/19 18:49:28 by haouky           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 void	add_backlst(t_list **lst, char *s)
 {

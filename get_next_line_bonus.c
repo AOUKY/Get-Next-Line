@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: haouky <haouky@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/13 15:34:12 by haouky            #+#    #+#             */
-/*   Updated: 2024/01/20 10:36:49 by haouky           ###   ########.fr       */
+/*   Created: 2024/01/19 18:44:58 by haouky            #+#    #+#             */
+/*   Updated: 2024/01/20 10:38:32 by haouky           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 int	chek(char *s)
 {
@@ -74,7 +74,7 @@ char	*get(int fd, t_var *v, char *tmp, char *s)
 	head = 0;
 	if (chek(tmp) < 0)
 	{
-		while ((chek(s) < 0) && (ft_read(fd, s, BUFFER_SIZE) > 0))
+		while ((chek(s) < 0) && ft_read(fd, s, BUFFER_SIZE) > 0)
 			(add_backlst(&head, s));
 		tmp = ft_strjoin(tmp, splt(head, fd));
 		ft_lstclear(&head);
@@ -85,7 +85,7 @@ char	*get(int fd, t_var *v, char *tmp, char *s)
 	else
 	{
 		v->line = sub(tmp, 0, v->i + 1);
-		v->save = sub(tmp, v->i + 1, ft_strlen(tmp) - v->i);
+		v->save = sub(tmp, v->i + 1, ft_strlen(tmp));
 	}
 	free(tmp);
 	return (v->line);
@@ -95,13 +95,13 @@ char	*get_next_line(int fd)
 {
 	t_var		v;
 	char		*s;
-	static char	*tmp;
+	static char	*tmp[1025];
 
 	s = 0;
 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, s, 0) < 0)
 	{
-		free(tmp);
-		tmp = 0;
+		free(tmp[fd]);
+		tmp[fd] = 0;
 		return (0);
 	}
 	s = malloc(BUFFER_SIZE + 1);
@@ -109,9 +109,9 @@ char	*get_next_line(int fd)
 		return (0);
 	s[0] = 0;
 	v.save = 0;
-	v.line = get(fd, &v, tmp, s);
+	v.line = get(fd, &v, tmp[fd], s);
 	free(s);
-	tmp = v.save;
+	tmp[fd] = v.save;
 	if (!v.save)
 		free(v.save);
 	return (v.line);
