@@ -6,7 +6,7 @@
 /*   By: haouky <haouky@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 18:44:58 by haouky            #+#    #+#             */
-/*   Updated: 2024/01/20 11:42:27 by haouky           ###   ########.fr       */
+/*   Updated: 2024/01/20 18:45:12 by haouky           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ char	*get_next_line(int fd)
 {
 	t_var		v;
 	char		*s;
-	static char	*tmp[1025];
+	static char	*tmp[OPEN_MAX];
 
 	s = 0;
 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, s, 0) < 0)
