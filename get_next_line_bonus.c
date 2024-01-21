@@ -6,7 +6,7 @@
 /*   By: haouky <haouky@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 18:44:58 by haouky            #+#    #+#             */
-/*   Updated: 2024/01/20 18:45:12 by haouky           ###   ########.fr       */
+/*   Updated: 2024/01/21 09:23:54 by haouky           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,35 +28,6 @@ int	chek(char *s)
 	return (-1);
 }
 
-char	*splt(t_list *lst, int i)
-{
-	int		cnt;
-	char	*s;
-	t_list	*head;
-
-	i = 0;
-	head = lst;
-	cnt = 0;
-	while (lst)
-	{
-		cnt += ft_strlen(lst->content);
-		lst = lst->next;
-	}
-	s = malloc(cnt + 1);
-	if (!s)
-		return (0);
-	cnt = 0;
-	while (head)
-	{
-		while ((head->content)[i])
-			s[cnt++] = (head->content)[i++];
-		i = 0;
-		head = head->next;
-	}
-	s[cnt] = 0;
-	return (s);
-}
-
 int	ft_read(int fd, char *s, int i)
 {
 	int	a;
@@ -69,9 +40,6 @@ int	ft_read(int fd, char *s, int i)
 
 char	*get(int fd, t_var *v, char *tmp, char *s)
 {
-	t_list	*head;
-
-	head = 0;
 	if (chek(tmp) < 0)
 	{
 		while ((chek(s) < 0) && ft_read(fd, s, BUFFER_SIZE) > 0)

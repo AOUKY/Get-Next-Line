@@ -6,39 +6,11 @@
 /*   By: haouky <haouky@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 18:46:15 by haouky            #+#    #+#             */
-/*   Updated: 2024/01/20 11:38:10 by haouky           ###   ########.fr       */
+/*   Updated: 2024/01/21 09:19:41 by haouky           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line_bonus.h"
-
-void	add_backlst(t_list **lst, char *s)
-{
-	t_list	*head;
-	t_list	*ne;
-	int		i;
-
-	i = -1;
-	head = *lst;
-	ne = malloc(sizeof(t_list));
-	if (ne == 0)
-		return (ft_lstclear(lst));
-	ne->content = malloc(ft_strlen(s) + 1);
-	if (ne->content == 0)
-		return (ft_lstclear(lst));
-	while (s[++i])
-		(ne->content)[i] = s[i];
-	(ne->content)[i] = 0;
-	ne->next = 0;
-	if (*lst == 0)
-		*lst = ne;
-	else
-	{
-		while (head->next)
-			head = head->next;
-		head->next = ne;
-	}
-}
 
 size_t	ft_strlen(const char *str)
 {
@@ -101,22 +73,4 @@ char	*ft_strjoin(char *s1, char *s2)
 	s[i] = 0;
 	free(s1);
 	return (s);
-}
-
-void	ft_lstclear(t_list **lst)
-{
-	t_list	*nd;
-	t_list	*last_node;
-
-	if (!lst)
-		return ;
-	last_node = *lst;
-	while (last_node)
-	{
-		nd = last_node;
-		last_node = last_node->next;
-		free(nd->content);
-		free(nd);
-	}
-	*lst = 0;
 }
